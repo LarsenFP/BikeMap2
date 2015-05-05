@@ -13,7 +13,7 @@ import java.sql.SQLException;
  * Created by Valery on 06.05.2015.
  */
 public class LocationsContentProvider extends ContentProvider {
-    public static final String PROVIDER_NAME = "in.wptrafficanalyzer.locationmarkersqlite.locations";
+    public static final String PROVIDER_NAME = "com.example.valery.bikemap.locations";
 
     /** A uri to do operations on locations table. A content provider is identified by its uri */
     public static final Uri CONTENT_URI = Uri.parse("content://" + PROVIDER_NAME + "/locations" );
