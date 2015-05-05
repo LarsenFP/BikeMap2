@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.facebook.stetho.Stetho;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -47,6 +49,13 @@ public class FragmentMap extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Stetho.initialize(
+                Stetho.newInitializerBuilder(getActivity())
+                        .enableDumpapp(
+                                Stetho.defaultDumperPluginsProvider(getActivity()))
+                        .enableWebKitInspector(
+                                Stetho.defaultInspectorModulesProvider(getActivity()))
+                        .build());
         }
 
     @Override
@@ -174,7 +183,7 @@ public class FragmentMap extends Fragment {
     private String formatLocation(Location location) {
         if (location == null)
             return "";
-        return String.format("Time positioning:\n"+"%3$tF %3$tT\n" + "Coordinates:\n"+"lat = %1$.4f, lon = %2$.4f\n"+
+        return String.format("Time positioning:\n"+"%3$tF %3$tT\n" + "Coordinates:\n"+"lat = %1$.4f\nlon = %2$.4f\n"+
                         "Speed:\n" + "%4$.1f m/c\n" + "%6$.1f km/h\n"+ "Accuracy:\n" + "%5$.1f m\n",
 
                 location.getLatitude(), location.getLongitude(), new Date(
